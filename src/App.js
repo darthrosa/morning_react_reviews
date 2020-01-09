@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+// import Practice from './Components/Practice'
+import Header from './Components/Header'
+import Profile from './Components/Profile'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      name: 'Lucas',
+      age: 27
+    }
+  }
+
+  updateInfo = (newName, newAge) => {
+    if(!newName || !newAge) {
+      alert('NO BLANK INPUTS PLEASE!')
+    } else {
+      this.setState({
+        name: newName,
+        age: newAge
+      })
+    }
+  }
+
+  render(){
+    return (
+			<div className="App">
+        {/* <Practice/> */}
+				<Header name={this.state.name} age={this.state.age} />
+				<Profile name={this.state.name} age={this.state.age} updateInfo={this.updateInfo}/>
+			</div>
+		);
+  }
 }
 
 export default App;
